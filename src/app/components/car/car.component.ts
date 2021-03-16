@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Car } from 'src/app/models/car';
-import { CarResponseModel } from 'src/app/models/carResponseModel';
 import { CarService } from 'src/app/services/car.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-car',
@@ -12,11 +13,23 @@ export class CarComponent implements OnInit {
   
   cars: Car[] = [];
   dataLoaded = false;
+  imageBasePath = environment.baseUrl;
 
-  constructor(private carService: CarService) {}
+  constructor(private carService: CarService, private activatedRoute:ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.getCars();
+    this.activatedRoute.params.subscribe(params=>{
+      if(params["carBrandId"]){
+        this.getCarsByBrandId(params["carBrandId"])
+      }
+      else if(params["carColorId"]){
+        this.getCarsByColorId(params["carColorId"])
+      }
+      else{
+        this.getCars();
+      }
+    });
+    
   }
 
   getCars() {
@@ -25,4 +38,18 @@ export class CarComponent implements OnInit {
       this.dataLoaded = true;
     })
   }
+
+  getCarsByBrandId(brandId:number) {
+    this.carService.getCarDetailsByBrandId(brandId).subscribe(response=>{
+      this.cars=response.data;
+      this.dataLoaded = true;
+    })
+  }
+
+  getCarsByColorId(colorId:number) {
+  this.carService.getCarDetailsByColorId(colorId).subscribe(response=>{
+    this.cars=response.data;
+    this.dataLoaded = true;
+  })
+}
 }

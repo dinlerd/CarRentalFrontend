@@ -1,4 +1,4 @@
-<div *ngIf="dataLoaded==false" class="spinner-border text-success" role="status">
+<!-- <div *ngIf="dataLoaded==false" class="spinner-border text-success" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
 <table *ngIf="dataLoaded==true" class="table table-success table-bordered table-striped">
@@ -10,6 +10,8 @@
             <th>Brand</th>
             <th>Color</th>
             <th>Price</th>
+            <th>Year</th>
+
         </tr>
     </thead>
     <tr *ngFor="let car of cars">
@@ -18,5 +20,36 @@
         <td>{{car.brandName}}</td>
         <td>{{car.colorName}}</td>
         <td>{{car.dailyPrice}}</td>
+        <td>{{car.modelYear}}</td>
     </tr>
-</table>
+</table> -->
+
+
+  <h4>CAR LIST</h4>
+<div *ngIf="dataLoaded==false" class="spinner-border" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div class="row" *ngIf="dataLoaded==true">
+  <div *ngFor="let car of cars" class="card" style="width: 18rem;">
+    <img src="{{imageBasePath}}/{{car.imagePath}}" class="card-img-top" alt="{{car.carDescription}} Image" width="auto" height="auto">
+    <!-- <img src="https://localhost:44316/uploads/d71dea27-5f78-485a-bfab-35052fd42f40.jpg" class="card-img-top" alt="{{car.carDescription}} Image" width="auto" height="auto"> -->
+    <div  class="card-body">
+      <h5 class="card-title">{{car.carDescription}}</h5>
+    </div >
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Brand: {{car.brandName}}</li>
+      <li class="list-group-item">Color: {{car.colorName}}</li>
+      <li class="list-group-item">Model Year: {{car.modelYear}}</li>
+      <li class="list-group-item">Price: {{car.dailyPrice}} TL</li>
+      <li class="list-group-item">Path: {{car.imagePath}}</li>
+    </ul>
+    <div class="card-body">
+      <section style="float:left">
+        <button routerLink="/car/details/{{car.carId}}" type="button" class="btn btn-primary">Details</button>
+      </section>
+      <section style="float: right">
+        <button type="button" class="btn btn-primary">Rent</button>
+      </section>
+    </div>
+  </div>
+</div>

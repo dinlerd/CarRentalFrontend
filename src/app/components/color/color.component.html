@@ -1,4 +1,4 @@
-<div *ngIf="dataLoaded==false" class="spinner-border text-success" role="status">
+<!-- <div *ngIf="dataLoaded==false" class="spinner-border text-success" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
 <table *ngIf="dataLoaded==true" class="table table-success table-bordered table-striped">
@@ -13,4 +13,12 @@
         <td>{{color.carColorId}}</td>
         <td>{{color.carColorName}}</td>
     </tr>
-</table>
+</table> -->
+
+<ul class="list-group">
+    <li routerLink="/cars" (click)="clearCurrentColor()" [class]="getAllColorClass()" aria-current="true">Colors</li>
+    <li (click)="setCurrentColor(color)" 
+    routerLink="/cars/color/{{color.carColorId}}" 
+    *ngFor="let color of colors" 
+    [class]="getCurrentColorClass(color)">{{color.carColorName}}</li>
+</ul>
