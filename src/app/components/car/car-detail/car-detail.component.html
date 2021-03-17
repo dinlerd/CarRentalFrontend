@@ -6,8 +6,10 @@
         <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div>
       <div class="carousel-inner">
-        <div *ngFor="let car of carDetail" class="carousel-item active" data-bs-interval="10000">
-          <img src="{{imageBasePath}}/{{car.imagePath}}" class="d-block w-100" alt="Image">
+        <!-- <div *ngFor="let car of carDetail" class="carousel-item active" data-bs-interval="10000"> -->
+          <!-- <div *ngFor="let image of images ; index as i;first as firstImage" [ngClass]="{ active: firstImage }" data-bs-interval="2000"> -->
+          <div *ngFor="let image of images let i = index" [ngClass]="getSliderClassName(i)" data-bs-interval="1000">
+          <img src="{{imageBasePath}}/{{image.imagePath}}" class="d-block w-100" width="800" height="500" alt="Image">
           <div class="carousel-caption d-none d-md-block">
           </div>
         </div>
@@ -36,11 +38,29 @@
       </button>
     </div>
     <div>
-      <ul *ngFor="let car of carDetail" class="list-group list-group-flush">
-        <li class="list-group-item">Brand: {{car.brandName}}</li>
-        <li class="list-group-item">Color: {{car.colorName}}</li>
-        <li class="list-group-item">Model Year: {{car.modelYear}}</li>
-        <li class="list-group-item">Price: {{car.dailyPrice}} TL</li>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Brand: {{carDetail.car.brandName}}</li>
+        <li class="list-group-item">Color: {{carDetail.car.colorName}}</li>
+        <li class="list-group-item">Model Year: {{carDetail.car.modelYear}}</li>
+        <li class="list-group-item">Price: {{carDetail.car.dailyPrice}} TL</li>
       </ul>
+    </div>
+  </div>
+
+  <div *ngIf="dataLoaded == true" class="row">
+    <style>
+      h2 {text-align: center;}
+      </style>
+    <h2>All Photos</h2>
+    <!-- <div *ngFor="let image of carDetail?.carImages" class="col-md-4"> -->
+      <div *ngFor="let image of images" class="col-md-4">
+
+      <div class="thumbnail">
+        <img
+          src="{{imageBasePath}}/{{image.imagePath}}"
+          alt="{{imageBasePath}}/{{image.imagePath}} Image"
+          style="width: 100%"
+        />
+      </div>
     </div>
   </div>

@@ -32,7 +32,7 @@
 <div class="row" *ngIf="dataLoaded==true">
   <div *ngFor="let car of cars" class="card" style="width: 18rem;">
     <img src="{{imageBasePath}}/{{car.imagePath}}" class="card-img-top" alt="{{car.carDescription}} Image" width="auto" height="auto">
-    <!-- <img src="https://localhost:44316/uploads/d71dea27-5f78-485a-bfab-35052fd42f40.jpg" class="card-img-top" alt="{{car.carDescription}} Image" width="auto" height="auto"> -->
+    <!-- <img src="https://localhost:44316/uploads/togg.jpg" class="card-img-top" alt="{{car.carDescription}} Image" width="auto" height="auto"> -->
     <div  class="card-body">
       <h5 class="card-title">{{car.carDescription}}</h5>
     </div >
@@ -41,7 +41,7 @@
       <li class="list-group-item">Color: {{car.colorName}}</li>
       <li class="list-group-item">Model Year: {{car.modelYear}}</li>
       <li class="list-group-item">Price: {{car.dailyPrice}} TL</li>
-      <li class="list-group-item">Path: {{car.imagePath}}</li>
+      <!-- <li class="list-group-item">Path: {{imageBasePath}}/{{car.imagePath}}</li> -->
     </ul>
     <div class="card-body">
       <section style="float:left">
