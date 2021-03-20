@@ -48,3 +48,42 @@ export class ColorComponent implements OnInit {
     this.currentColor = null;
   }
 }
+
+
+// colors:Color[] = [];
+// currentColor:Color = {id:-1,colorName:""}
+// dataLoaded = false;
+// filterText:String;
+// constructor(private colorService:ColorService) { }
+
+// ngOnInit(): void {
+//   this.getColors();
+// }
+// getColors() {
+//   this.colorService.getColors().subscribe(response => {
+//      this.colors = response.data,
+//      this.dataLoaded = true;
+//   })
+// }
+// setCurrentColor(color:Color){
+//   this.currentColor = color;
+// }
+// getCurrentColorClass(color:Color){
+//   if(this.currentColor == color){
+//     return "list-group-item active";
+//   } else {
+//     return "list-group-item"
+//   }
+// }
+// getAllCurrentColorClass(){
+//   let defaultColor:Color = {id:-1,colorName:""};
+//   if(this.currentColor.id == defaultColor.id){
+//     return "list-group-item active";
+//   } else {
+//     return "list-group-item"
+//   }
+// }
+// removeCurrentColor(){
+//   this.filterText = "";
+//   this.currentColor={id:-1,colorName:""};
+// }

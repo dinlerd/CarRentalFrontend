@@ -1,12 +1,14 @@
   
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/car';
 import { CarDetail } from 'src/app/models/car-detail';
 import { CarImage } from 'src/app/models/car-image';
 import { CarDetailService } from 'src/app/services/car-detail.service';
 import { CarImageService } from 'src/app/services/car-image.service';
 import { CarService } from 'src/app/services/car.service';
+import { RentCartService } from 'src/app/services/rent-cart.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -16,13 +18,13 @@ import { environment } from 'src/environments/environment';
 })
 export class CarDetailComponent implements OnInit {
 
-  //car: Car;
+  car: Car;
   carDetail: CarDetail;
   images:CarImage[];
   dataLoaded = false;
   imageBasePath = environment.baseUrl;
 
-  constructor(private carDetailService:CarDetailService, private carImageService:CarImageService, private activatedRoute:ActivatedRoute) { }
+  constructor(private carDetailService:CarDetailService, private carImageService:CarImageService, private activatedRoute:ActivatedRoute, private toastrService:ToastrService,private rentCartService:RentCartService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -56,5 +58,11 @@ export class CarDetailComponent implements OnInit {
     } else {
       return "carousel-item";
     }
+  }
+
+  addToRentCart(car:Car){
+    this.toastrService.success("Added ",car.carDescription + "added to RentCart")
+    this.rentCartService.addToRentCart(car);
+    console.log(car);
   }
 }

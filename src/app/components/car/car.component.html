@@ -26,12 +26,24 @@
 
 
   <h4>CAR LIST</h4>
+
+  <div class="mb-3">
+    <label for="filterText" class="form-label">Search Car</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="enter search text">
+  </div>
+<div *ngIf="filterText.length>2" class="alert alert-primary">
+  {{filterText}} searched
+</div>
+
 <div *ngIf="dataLoaded==false" class="spinner-border" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
+
+<app-car-filter></app-car-filter>
+
 <div class="row" *ngIf="dataLoaded==true">
-  <div *ngFor="let car of cars" class="card" style="width: 18rem;">
-    <img src="{{imageBasePath}}/{{car.imagePath}}" class="card-img-top" alt="{{car.carDescription}} Image" width="auto" height="auto">
+  <div *ngFor="let car of cars | filterPipe:filterText" class="card" style="width: 20rem;">
+    <img src="{{imageBasePath}}/{{car.imagePath}}" class="card-img-top" alt="{{car.carDescription}} Image" width="auto" height="200">
     <!-- <img src="https://localhost:44316/uploads/togg.jpg" class="card-img-top" alt="{{car.carDescription}} Image" width="auto" height="auto"> -->
     <div  class="card-body">
       <h5 class="card-title">{{car.carDescription}}</h5>
@@ -48,7 +60,7 @@
         <button routerLink="/car/details/{{car.carId}}" type="button" class="btn btn-primary">Details</button>
       </section>
       <section style="float: right">
-        <button type="button" class="btn btn-primary">Rent</button>
+        <button routerLink="/car/rentals/{{car.carId}}" (click)="addToRentCart(car)" type="button" class="btn btn-primary">Rent</button>
       </section>
     </div>
   </div>

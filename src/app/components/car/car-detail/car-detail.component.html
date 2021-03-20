@@ -45,6 +45,9 @@
         <li class="list-group-item">Price: {{carDetail.car.dailyPrice}} TL</li>
       </ul>
     </div>
+    <section style="float: left">
+      <button (click)="addToRentCart(carDetail.car)" type="button" class="btn btn-primary">Rent</button>
+    </section>
   </div>
 
   <div *ngIf="dataLoaded == true" class="row">

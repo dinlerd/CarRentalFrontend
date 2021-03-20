@@ -22,3 +22,28 @@
     *ngFor="let color of colors" 
     [class]="getCurrentColorClass(color)">{{color.carColorName}}</li>
 </ul>
+
+<!-- <div *ngIf="dataLoaded == false" class="text-center">
+    <div class="spinner-border text-dark" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+  </div>
+  
+  <div class="mb-3">
+    <label for="filterText" class="form-label">Renk Ara</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control"
+    placeholder="renk">
+  </div>
+  <ul *ngIf="dataLoaded == true" class="list-group">
+      <li 
+      routerLink="/cars"
+      (click)="removeCurrentColor()"
+      [ngClass]="getAllCurrentColorClass()" aria-current="true">Renkler</li>
+      <li
+      (click)="setCurrentColor(color)"
+      [ngClass]="getCurrentColorClass(color)"
+      routerLink="/cars/color/{{color.id}}"
+      *ngFor="let color of colors | filterColor:filterText">
+      {{color.colorName}}</li>
+   
+    </ul> -->
