@@ -30,17 +30,11 @@
 
 <div class="card mb-3" style="max-width: 1024px; margin-top: 20px;">
     <div class="row g-0">
-        <div class="col-8">
-            <label for="customerSelect" class="form-label">Select Customer:</label>
-            <select class="form-select" [(ngModel)]="customerId" id="customerSelect">
-              <option [value]="customer.id" *ngFor="let customer of customers">{{ customer.id }} - {{ customer.companyName }}</option>
-            </select>
-          </div>
       <div class="col-md-5">
         <table *ngIf="car" class="table table-striped mt-2">
             <tbody>
               <tr>
-                <th scope="row">Marka</th>
+                <th scope="row">Brand</th>
                 <td>{{ car.brandName }}</td>
               </tr>
               <tr>
@@ -48,45 +42,65 @@
                 <td>{{ car.carDescription }}</td>
               </tr>
               <tr>
-                <th scope="row">Renk</th>
+                <th scope="row">Color</th>
                 <td>{{ car.colorName }}</td>
               </tr>
               <tr>
-                <th scope="row">Fiyat</th>
+                <th scope="row">Price</th>
                 <td>
                   {{
                     car.dailyPrice | currency: "TRY":"symbol-narrow":"1.2-2"
-                  }}/Gunluk
+                  }}/Daily
                 </td>
               </tr>
               <tr>
-                <th scope="row">Model Yılı</th>
+                <th scope="row">Model Year</th>
                 <td>{{ car.modelYear }}</td>
                 <td></td>
               </tr>
               <tr>
-                <th scope="row">Aciklama</th>
+                <th scope="row">Description</th>
                 <td>{{ car.carDescription }}</td>
               </tr>
             </tbody>
           </table>
       </div>
       <div class="col-md-7" style="position: relative;">
-        <div class="card-body">
-            <form class="list-group-item active">
-                <label>Başlangıç tarihi</label><label style="margin-left: 95px;">Bitiş tarihi</label>
+        <div class="card">
+          <div class="card-header"><h5 class="title">Add Car</h5></div>
+          <div class="card-body">
+          <div class="mb-3">
+            <label for="customerSelect" class="form-label">Select Customer:</label>
+            <select class="form-select" [(ngModel)]="customerId" id="customerSelect">
+              <option [value]="customer.id" *ngFor="let customer of customers">{{ customer.id }} - {{ customer.companyName }}</option>
+            </select>
+            </div>
+              <div>
+              <form class="list-group-item active">
+                <label>Start Date</label><label style="margin-left: 150px;">End Date</label>
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group me-5" role="group" aria-label="First group"><input type="date" (change)="calculatePrice()" [(ngModel)]="startDate" [ngModelOptions]="{standalone: true}"></div>
                     <div class="btn-group me-5" role="group" aria-label="First group"><input type="date" (change)="calculatePrice()" [(ngModel)]="endDate" [ngModelOptions]="{standalone: true}"></div>
                 </div>
                 <br><br>
-                <div><p *ngIf="endDate && startDate">Toplam ücret: {{rentPrice | currency:"TRY":"symbol-narrow":"1.2-2"}}</p></div>
-            </form>
+                <div><p *ngIf="endDate && startDate">Total price: {{rentPrice | currency:"TRY":"symbol-narrow":"1.2-2"}}</p></div>
+              </form>
+            </div>
+            </div>
+          <div class="card-footer">
+          <section style="float: left">
+           <button [disabled]="!(endDate && startDate && rentPrice>0)" (click)="addRentalCheck(rentalToAdd)" type="button" class="btn btn-primary">Rent</button>
+          <!-- *ngIf="endDate && startDate && rentPrice>0"   -->
+          <!-- <button (click)="addRentalCheck(rentalToAdd)" type="button" class="btn btn-success" style="position:absolute; bottom:20px; right:20px;">Rent</button> -->
+        </section>
+        <section *ngIf="car" style="float: right">
+          <button [disabled]="!(carRented==true)" routerLink="/rental/payment/{{car.carId}}" type="button" class="btn btn-primary">Payment</button>
+        </section>
+          </div>
         </div>
-          <button *ngIf="endDate && startDate && rentPrice>0" (click)="addRental(rentalToAdd)" type="button" class="btn btn-success" style="position:absolute; bottom:20px; right:20px;">Kirala</button>
-      </div>
+
+        </div>
     </div>
   </div>
-
 
 

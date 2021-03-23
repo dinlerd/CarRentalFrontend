@@ -29,6 +29,8 @@ export class RentalComponent implements OnInit {
   customerId:number;
   rentable:Boolean = false;
   dataLoaded=false;
+  carRented=false;
+
   constructor(private rentalService:RentalService, 
     private activatedRoute:ActivatedRoute, 
     private carService:CarService,
@@ -89,10 +91,25 @@ export class RentalComponent implements OnInit {
   }
 
   addRental(rentalToAdd:RentalToAdd){
-    this.rentalService.addRental(rentalToAdd);
-    console.log(this.rentalToAdd);
-    this.dataLoaded=true;
-    this.reloadComponent();
+      this.rentalService.addRental(rentalToAdd);
+      console.log(this.rentalToAdd);
+      this.carRented=true;
+  //    this.reloadComponent();
+ 
+  }
+
+  addRentalCheck(rentalToAdd:RentalToAdd){
+    console.log("rentals length " + this.rentals.length)
+    console.log("rentalToAdd rentDate " + rentalToAdd.rentDate)
+    console.log("rentals last one returnDate " + this.rentals[this.rentals.length-1].returnDate)
+    if(this.rentals.length>0 && rentalToAdd.rentDate > this.rentals[this.rentals.length-1].returnDate)
+    {
+      this.addRental(rentalToAdd);
+      this.toastrService.success("Car Rented !","Success")
+      
+    }else{
+      this.toastrService.error("Car is not available to rent between these dates","!")
+    }
   }
 
   reloadComponent() {
@@ -110,7 +127,13 @@ export class RentalComponent implements OnInit {
     }
 
   calculatePrice(){
-    if(this.startDate && this.endDate){
+    if (this.customerId === undefined) {
+      this.toastrService.warning('Please select customer!');
+    } else if (this.startDate === undefined) {
+      this.toastrService.warning('Lütfen Kira Başlangıç Tarihini seçin.');
+    } else if (this.endDate === undefined) {
+      this.toastrService.warning('Lütfen Kira Bitiş Tarihini seçin.');
+    }else if(this.startDate && this.endDate){
       let endDate = new Date(this.endDate.toString())
       let startDate = new Date(this.startDate.toString())
       let endDay = Number.parseInt(endDate.getDate().toString())
@@ -132,12 +155,12 @@ export class RentalComponent implements OnInit {
         //this.setRentable()
       }else{
         this.rentPrice = 0
-        this.toastrService.info("Bu tarihler arasında arabayı kiralayamazsınız","!")
+        this.toastrService.info("Car cannot be rented between these dates: " + this.startDate + " and " + this.endDate,"!")
       }
     }
     else{
       this.rentPrice = 0
-      this.toastrService.info("Bu tarihler arasında arabayı kiralayamazsınız","!")
+      this.toastrService.info("Car cannot be rented between these dates: " + this.startDate + " and " + this.endDate,"!")
     }
   }
 }
