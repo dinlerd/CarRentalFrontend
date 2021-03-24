@@ -21,6 +21,14 @@ import { CarFilterComponent } from './components/car-filter/car-filter.component
 import { CarAddComponent } from './components/car-add/car-add.component';
 import { CarImageAddComponent } from './components/car/car-image-add/car-image-add.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { CarUpdateComponent } from './components/car-update/car-update.component';
+import { BrandUpdateComponent } from './components/brand-update/brand-update.component';
+import { BrandOperationsComponent } from './components/brand-operations/brand-operations.component';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
+import { ColorOperationsComponent } from './components/color-operations/color-operations.component';
+import { ColorAddComponent } from './components/color-add/color-add.component';
+import { ColorUpdateComponent } from './components/color-update/color-update.component';
+import { CarOperationsComponent } from './components/car-operations/car-operations.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +45,15 @@ import { PaymentComponent } from './components/payment/payment.component';
     CarFilterComponent,
     CarAddComponent,
     CarImageAddComponent,
-    PaymentComponent
+    PaymentComponent,
+    CarUpdateComponent,
+    BrandUpdateComponent,
+    BrandOperationsComponent,
+    BrandAddComponent,
+    ColorOperationsComponent,
+    ColorAddComponent,
+    ColorUpdateComponent,
+    CarOperationsComponent
   ],
   imports: [
     BrowserModule,

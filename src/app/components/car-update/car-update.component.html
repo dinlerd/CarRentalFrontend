@@ -1,0 +1,152 @@
+<div *ngIf="dataLoaded==false" class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+<div *ngIf="dataLoaded==true" class="content">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header"><h5 class="title">Update Car</h5></div>
+            <div class="card-body">
+                <form [formGroup]="carUpdateForm">
+
+                  <!-- <div class="mb-3">
+                    <label for="id">Id</label>
+                    <div class="form-group">
+                      <input
+                        type="number"
+                        id="id"
+                        formControlName="id"
+                        class="form-control"
+                        [(ngModel)]="carToUpdate.id"
+                      />
+                    </div>
+                  </div> -->
+
+                    <div class="mb-3">
+                        <label for="carDescription">Car Description</label>
+                        <div class="form-group">
+                            <input type="text" 
+                            id="carDescription" 
+                            formControlName="description"
+                            class="form-control" 
+                            placeholder="{{carToUpdate.description}}"/>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="brandId">Select Brand Id:</label>
+                        <select class="form-control" formControlName="brandId">
+                          <option *ngFor="let brand of brands" [ngValue]="brand.carBrandId">{{brand.carBrandName}}</option>
+                        </select>
+                        <!-- <div class="form-group">
+                            <input type="number" 
+                            id="brandId" 
+                            formControlName="brandId"
+                            class="form-control" 
+                            placeholder="{{carToUpdate.brandId}}"/>
+                        </div> -->
+                    </div>
+                    <div class="mb-3">
+                        <label for="colorId">Select Color Id:</label>
+                        <select class="form-control" formControlName="colorId">
+                          <option *ngFor="let color of colors" [ngValue]="color.carColorId">{{color.carColorName}}</option>
+                        </select>
+                        <!-- <div class="form-group">
+                            <input type="number" 
+                            id="colorId" 
+                            formControlName="colorId"
+                            class="form-control" 
+                            placeholder="{{carToUpdate.colorId}}"/>
+                        </div> -->
+                    </div>
+                    <div class="mb-3">
+                        <label for="dailyPrice">Daily Price</label>
+                        <div class="form-group">
+                            <input type="number" 
+                            id="dailyPrice" 
+                            formControlName="dailyPrice"
+                            class="form-control" 
+                            placeholder="{{carToUpdate.dailyPrice}}"/>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="modelYear">Model Year</label>
+                        <div class="form-group">
+                            <input type="number" 
+                            id="modelYear" 
+                            formControlName="modelYear"
+                            class="form-control" 
+                            placeholder="{{carToUpdate.modelYear}}"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <!-- <section style="float:left">
+                    <button  class="btn btn-fill btn-primary" (click)="update()">Update</button> 
+                  </section> -->
+                  <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-primary" (click)="update()">Update</button>
+                  </div>
+                  <!-- <section style="float: right">
+                    <button *ngIf="goToImageAdd==true" routerLink="/car/addCarImage" class="btn btn-fill btn-primary">Add-Image Page</button> 
+                  </section> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 
+<div class="container">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h5 class="card-title">Update Car</h5></div>
+        <div class="card-body">
+          <form [formGroup]="carUpdateForm">
+            <div class="mb-3 row">
+              <label class="col-sm-2 col-form-label">Select Brand</label>
+              <div class="col-sm-10">
+                <select class="form-control" formControlName="brandId">
+                  <option *ngFor="let brand of brands" [ngValue]="brand.carBrandId">{{brand.carBrandName}}</option>
+                </select>
+              </div>
+            </div>
+    
+            <div class="mb-3 row">
+              <label class="col-sm-2 col-form-label">Select Color</label>
+              <div class="col-sm-10">
+                <select class="form-control" formControlName="colorId">
+                  <option *ngFor="let color of colors" [ngValue]="color.carColorId">{{color.carColorName}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="modelYear" class="col-sm-2 col-form-label">Model Year</label>
+              <div class="col-sm-10">
+                <input type="number" id="modelYear" formControlName="modelYear" class="form-control"
+                       placeholder="Model Year"/>
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="dailyPrice" class="col-sm-2 col-form-label">Daily Price</label>
+              <div class="col-sm-10">
+                <input type="number" id="dailyPrice" formControlName="dailyPrice" class="form-control"
+                       placeholder="Daily Price"/>
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="description" class="col-sm-2 col-form-label">Description</label>
+              <div class="col-sm-10">
+                <input type="text" id="description" formControlName="description" class="form-control"
+                       placeholder="Description"/>
+              </div>
+            </div>
+            <input type="hidden" id="id" formControlName="id" class="form-control"
+                   placeholder="Description"/>
+          </form>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-outline-primary" (click)="update()">Update</button>
+        </div>
+      </div>
+    </div>
+    </div> -->

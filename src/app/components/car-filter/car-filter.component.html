@@ -2,21 +2,30 @@
     <div class="col col-4">
         <label for="brandSelect" class="form-label">Select Brand:</label>
         <select [(ngModel)]="brandFilter"  class="form-select" aria-label="Default select example" id="brandSelect">
+            <!-- <option selected>Open for Brands</option> -->
             <option *ngFor="let brand of brands" [value]="brand.carBrandId" selected="{{getSelectedBrand(brand.carBrandId)}}">{{brand.carBrandName}}</option>
           </select>
     </div>
     <div class="col col-4">
         <label for="colorSelect" class="form-label">Select Color:</label>
         <select [(ngModel)]="colorFilter" class="form-select" aria-label="Default select example" id="colorSelect">
-            <option *ngFor="let color of colors" [value]="color.carColorId" [selected]="getSelectedColor(color.carColorId)"  >{{color.carColorName}}</option>
+            <!-- <option selected>Open for Colors</option> -->
+            <option *ngFor="let color of colors" [value]="color.carColorId" [selected]="getSelectedColor(color.carColorId)">{{color.carColorName}}</option>
+            <!-- [selected]="getSelectedColor(color.carColorId)" -->
           </select>
     </div>
     <div class="col col-2">
-        <a 
-        routerLink="/cars/filter/{{brandFilter}}/{{colorFilter}}" class="btn btn-success">Filter</a>
-        </div>
-        <div class="col col-2">
-            <a 
-            routerLink="/cars" class="btn btn-danger">Clear</a>
-        </div>
+        <br>
+        <section style="float: left">
+            <button [disabled]="!(colorFilter && brandFilter)" routerLink="/cars/filter/{{brandFilter}}/{{colorFilter}}" id="filter" type="button" class="btn btn-primary">Filter</button>
+          </section>
+        <!-- <a routerLink="/cars/filter/{{brandFilter}}/{{colorFilter}}" class="btn btn-success">Filter</a> -->
+    </div>
+    <div class="col col-2">
+        <br>
+        <section style="float:left">
+            <button routerLink="/cars" id="clear" type="button" class="btn btn-primary">Clear</button>
+          </section>
+            <!-- <a routerLink="/cars" class="btn btn-danger">Clear</a> -->
+    </div>
 </div>

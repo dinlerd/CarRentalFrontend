@@ -6,6 +6,8 @@ import { ListResponseModel } from '../models/listResponseModel';
 import { environment } from 'src/environments/environment';
 import { CarToAdd } from '../models/carToAdd';
 import { ResponseModel } from '../models/responseModel';
+import { CarToUpdate } from '../models/carToUpdate';
+import { ItemResponseModel } from '../models/itemResponseModel';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +16,11 @@ export class CarService {
   apiUrl = 'https://localhost:44316/api/';
 
   constructor(private httpClient: HttpClient) {}
+
+  getAllCars():Observable<ListResponseModel<CarToUpdate>>{
+    let newPath=this.apiUrl+"cars/getall";
+    return this.httpClient.get<ListResponseModel<CarToUpdate>>(newPath);
+  }
 
   getCars(): Observable<ListResponseModel<Car>> {
     let newPath = this.apiUrl + "cars/getcardetails"
@@ -45,7 +52,20 @@ export class CarService {
     return this.httpClient.get<ListResponseModel<Car>>(newPath);
   }
 
+  getCarById(carId:number): Observable<ItemResponseModel<CarToUpdate>> {
+    let newPath = this.apiUrl + "cars/getbyid?id=" + carId;
+    return this.httpClient.get<ItemResponseModel<CarToUpdate>>(newPath);
+  }
+
   add(car:CarToAdd):Observable<ResponseModel>{
     return this.httpClient.post<ResponseModel>(this.apiUrl+"cars/add",car)
+  }
+
+  update(car:CarToUpdate):Observable<ResponseModel>{
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"cars/update",car)
+  }
+
+  delete(car:CarToUpdate):Observable<ResponseModel>{
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"cars/delete",car)
   }
 }

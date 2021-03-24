@@ -1,0 +1,30 @@
+<div>
+    <button type="button" (click)="goToAddForm()" class="btn btn-primary">Add Car</button>
+</div>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Brand Id</th>
+          <th scope="col">Color Id</th>
+          <th scope="col">Model Year</th>
+          <th scope="col">Daily Price</th>
+          <th scope="col">Description</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let car of cars">
+          <th scope="row">{{car.id}}</th>
+          <td>{{car.brandId}}</td>
+          <td>{{car.colorId}}</td>
+          <td>{{car.modelYear}}</td>
+          <td>{{car.dailyPrice}}</td>
+          <td>{{car.description}}</td>
+          <td><button (click)="goToUpdateForm(car)" type="button" class="btn btn-primary">Update</button></td>
+          <td><button (click)="delete(car)" type="button" class="btn btn-danger">Delete</button></td>
+        </tr>
+      </tbody>
+  </table>

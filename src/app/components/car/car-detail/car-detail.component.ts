@@ -63,6 +63,7 @@ export class CarDetailComponent implements OnInit {
   addToRentCart(car:Car){
     this.toastrService.success("Added ",car.carDescription + "added to RentCart")
     this.rentCartService.addToRentCart(car);
+    this.dataLoaded = true;
     console.log(car);
   }
 }

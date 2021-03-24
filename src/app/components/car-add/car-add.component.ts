@@ -35,7 +35,7 @@ export class CarAddComponent implements OnInit {
     if(this.carAddForm.valid){
       let carModel =  Object.assign({},this.carAddForm.value) 
       this.carService.add(carModel).subscribe(response=>{
-        this.toastrService.success(response.message,"Successful")
+        this.toastrService.success(response.message,"Add Process Successful")
         this.goToImageAdd = true;
       },responseError=>{
         if(responseError.error.ValidationErrors.length>0)

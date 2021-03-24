@@ -1,4 +1,4 @@
-<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+<div *ngIf="dataLoaded==true" id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
     <div>
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -45,9 +45,14 @@
         <li class="list-group-item">Price: {{carDetail.car.dailyPrice}} TL</li>
       </ul>
     </div>
+    <div class="mb-3">
     <section style="float: left">
-      <button (click)="addToRentCart(carDetail.car)" type="button" class="btn btn-primary">Rent</button>
+      <button routerLink="/car/rentals/{{carDetail.car.carId}}" (click)="addToRentCart(carDetail.car)" type="button" class="btn btn-primary">Rent</button>
     </section>
+    <section style="float:left">
+      <button routerLink="/car/update/{{carDetail.car.carId}}" type="button" class="btn btn-primary">Update</button>
+    </section>
+    </div>
   </div>
 
   <div *ngIf="dataLoaded == true" class="row">
