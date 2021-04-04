@@ -1,24 +1,4 @@
-
-
-Technologies and Structures Used:
-Back-End
-C# Vers. 7.3
-Restful Web Api Vers. .Net Core 3.1
-Multilayered Acrhitecture
-Result Pattern
-Interceptors, Aspects
-Cache, Validation, Authorizaztion Aspects
-Autofac
-Fluent Validation
-Json Web Token
-Repository Design Pattern
-Async 
-Front-End
-Angular 11
-Bootstrap 5.0
-HttpClient Interceptor
-Guard
-Pipes
+![ReadMe](https://user-images.githubusercontent.com/74870868/113514269-53d3c880-9576-11eb-81dd-73c892c1a06a.PNG)
 
 ![Capture](https://user-images.githubusercontent.com/74870868/113513943-a4e2bd00-9574-11eb-9bfe-03f5206c6b02.PNG)
 ![Capture2](https://user-images.githubusercontent.com/74870868/113513951-ae6c2500-9574-11eb-91c2-b520416a8a03.PNG)
